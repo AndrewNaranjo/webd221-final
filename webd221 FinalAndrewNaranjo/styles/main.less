@@ -1,0 +1,791 @@
+@ogColor: #f36b47;
+@white: #ffffff;
+@gray: #4a555c;
+@bgGray: #eff7f8;
+@ltGray: #9d9c9c;
+@ltBlack: #484848;
+@hdBlack: #414141;
+
+@column-width: 70;
+@gutter-width: 30;
+@columns: 12;
+
+// Utility variable — you should never need to modify this
+@gridsystem-width: (@column-width * @columns) + (@gutter-width * @columns) * 1px;
+
+// Set @total-width to 100% for a fluid layout
+@total-width: 100%;  //makes .column mixin turn into %
+
+.column(@x,@columns:@columns) {
+	display: inline;
+	float: left;
+	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+	margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+
+// Fixes Box Model sizing issues
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+//Use this to force clear floated child elements
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body{
+	font-family: 'Ubuntu', sans-serif;
+}
+.container {				
+	max-width: @gridsystem-width;
+	margin: 0 auto;
+}
+
+
+
+.nav li {
+	color: @hdBlack;
+	display: inline-block;
+	float: right;
+	font-size: 15px;
+	font-weight: bold;
+	margin-right: 10px;
+
+	a {
+	color: #000;
+	text-decoration: none;
+	margin-right: 25px;
+
+		&:hover, .active {
+			position: relative;
+			border-bottom: 2px solid @ogColor;
+
+			&:after,
+			&:before {
+				top: 100%;
+				left: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+				margin-top: 2px;
+			}
+
+			&:after{
+		  	border-color: rgba(243, 107, 71, 0);
+				border-top-color: @ogColor;
+				border-width: 2px;
+				margin-left: -2px;
+			}
+
+			&:before{
+			  	border-color: rgba(243, 107, 71, 0);
+				border-top-color: @ogColor;
+				border-width: 4px;
+				margin-left: -4px;	
+			}
+		}
+	}			
+}
+
+nav {
+
+	h1 {
+		color: @hdBlack;
+		.column(4);
+		font-size: 22px;
+		margin-top: 36px;
+		margin-bottom: 42px;
+		font-weight: bold;
+	}
+	.orange{
+		color: @ogColor;
+	}
+
+	ul {
+		.column(8);
+		margin-top: 40px;
+		padding-top: 5px;	
+	}
+}
+
+section#slider{
+	background: url('../images/homeH.jpg');
+	background-size: cover;
+	background-position: center;
+
+	h2{
+		.column(12);
+		text-align: center;
+		margin-top: 210px;
+		font-size: 26px;
+		color: #eff7f8;
+
+		&:nth-child(2) {
+			margin-top: 50px;
+			margin-bottom: 163px;
+			font-size: 20px;
+			color: #d8dbdb;
+		}
+	}
+
+	.highlight {
+		background: linear-gradient(
+		      rgba(0, 0, 0, 0.4), 
+		      rgba(0, 0, 0, 0.4));
+		padding: 15px 64px 15px 64px;
+	}
+
+	.leftA{
+		.column(1);
+		margin-left: -25px;
+		margin-top: -260px;
+	}
+
+	.rightA{
+		.column(1);
+		float: right;
+		margin-right: -25px;
+		margin-top: -260px;
+	}
+
+	
+}
+
+section#lorem{
+	background: @ogColor;
+	p{
+		font-size: 20px;
+		color: @white;
+		padding-top: 41px;
+		padding-bottom: 37px;
+		text-align: center;
+	}
+
+	.big{
+		font-size: 25px;
+		text-transform: uppercase;
+		text-decoration: underline;
+	}	
+}
+
+section#body, section#projects{
+	h1{
+		color: @hdBlack;
+		margin-top:54px; 
+		font-size:26px;
+		text-align: center;
+		padding-bottom: 7px;
+		font-weight: bold;	
+	}
+
+	.underline{
+		border-bottom: 2px solid @ogColor;
+		padding-bottom: 4px;	
+	}
+
+	p{
+		color: @ltGray;
+		font-size: 16px;
+		text-align: center;
+		margin-top: 40px;
+		margin-bottom: 66px;
+		line-height: 25px;
+	}
+
+	
+}
+
+section#features{
+		article {
+			.column(3);
+
+			.center{
+				text-align: center;
+				margin-left: -30px;
+			}
+			img {
+				width: 61px;
+				height: 49px;
+				
+			}
+		
+			h4 {
+				color: @hdBlack;
+				font-size: 20px;
+				margin-bottom: 13px;
+			}
+
+			p {
+				color: @ltGray;
+				font-size:12px; 				
+				line-height: 20px;
+				word-spacing: 2px;
+			}
+		}
+	}
+
+section#projects{
+	p{
+		margin-top: 25px;
+	}
+
+	article{
+			.column(3);
+			width: 250px;
+			height: 230px;
+			background-color: #eff7f8;
+			margin-bottom: 68px;
+		img{
+		width:250px;
+		height:168px;
+		}
+		h3{
+			font-size: 16px;
+			color: @ogColor;
+			font-weight: bold;
+			float: right;
+			padding-top: 7px;
+			padding-right: 10px;	
+		}
+		p{
+			color: @ltGray;
+			font-size: 12px;
+			float: right;
+			margin-top: 5px;
+		}
+	}
+}
+
+///////////////////end of index/////////////////////////////
+//////////////////start of about us//////////////////////////
+
+section#aboutCover{
+	background: url('../images/aboutH.jpg');
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+	color: @white;
+
+	h2{
+		color: @white;
+		font-size: 60px;
+		padding-top: 130px;
+		padding-bottom:30px; 
+		.orange{
+			color: @ogColor;
+		}	
+	}
+
+	p{
+		font-size: 16px;
+		line-height: 25px;
+		margin-bottom: 300px;
+	}
+}
+
+section#us, section#team, section#mission{
+	h1{
+		color: @hdBlack;
+		margin-top:54px; 
+		font-size:26px;
+		text-align: center;
+		padding-bottom: 30px;
+		font-weight: bold;	
+	}
+
+	.underline{
+		border-bottom: 2px solid @ogColor;
+		padding-bottom: 4px;	
+	}
+
+	p{
+		color: @ltGray;
+		font-size: 16px;
+		text-align: center;
+		margin-top: 30px;
+		margin-bottom: 66px;
+		line-height: 25px;
+	}
+}
+
+section#team{
+		background-color: @bgGray;
+		h1{
+		
+			padding-top: 35px;
+		}
+		
+		article {
+			.column(3);
+
+			.center{
+				text-align: center;
+				margin-left: -30px;
+			}
+			img {
+				margin-top: 30px;
+				width: 180px;
+				height: 180px;
+				border-radius: 50%;
+				margin-bottom: 15px;
+			}
+		
+			h4 {
+				font-size: 18px;
+				font-weight: bolder;
+				color: @ltBlack;
+				margin-bottom: 15px;
+			}
+			h5{
+				font-size:16px;
+				color: @ltGray;
+				margin-bottom: 30px; 
+			}
+
+			p {
+				font-size:14px; 
+				line-height: 20px;
+				color: @ltGray;
+			}
+		}
+	}
+
+section#mission{
+	background-color: @white;
+
+	article{
+		.column(6);
+
+		h1{
+			float: left;
+			padding-bottom: 5px;
+		}
+
+		p{
+			margin-top: 15px;
+			margin-bottom: 0px;
+			font-size: 14.5px;
+			float: left;
+			text-align: left;
+			line-height: 20px;
+			font-weight: lighter;
+		}
+	}
+
+	aside{
+		.column(6);
+		width:570px;
+	    height:268px;
+	    overflow:hidden;
+	    position: relative;
+    	margin-top: 75px;
+    	margin-bottom: 100px;
+		img{
+
+			position: absolute;
+		    top: -355px;
+		    left: -340px;
+			
+		}
+	}
+}
+
+//////////////////end of about us////////////////
+/////////////////start of portfolio///////////////
+section#portCover{
+	background: url('../images/portCover.jpg');
+	background-size: cover;
+	background-position: top center;
+	text-align: center;
+	color: @white;
+
+
+	h2{
+		color: @white;
+		font-size: 60px;
+		padding-top: 162px;
+		padding-bottom:30px; 
+		.orange{
+			color: @ogColor;
+		}	
+	}
+
+	p{
+		.column(11);
+		font-size: 16px;
+		line-height: 25px;
+		padding-bottom: 206px;
+		margin-left: 42px;
+	}
+}
+
+section#portfolio{
+	h1{
+		color: @hdBlack;
+		margin-top:54px; 
+		font-size:26px;
+		text-align: center;
+		padding-bottom: 20px;
+		font-weight: bold;	
+	}
+
+	.underline{
+		border-bottom: 2px solid @ogColor;
+		padding-bottom: 4px;	
+	}
+
+	p{
+		color: @ltGray;
+		font-size: 16px;
+		text-align: center;	
+		margin-bottom: 66px;
+		line-height: 25px;
+	}
+
+	.portNav{
+		li {
+				text-decoration: none;
+				padding: 7px 10px 7px 10px;
+				font-size: 14px;
+				margin-right: 9px;
+				display: inline-block;
+				color: @ltGray;
+
+				&.active {
+					background-color: #eaeaea;
+					color: @ltGray;	
+					border:  1px;
+				}	
+			}
+	}
+}
+section#gallery{
+		margin-bottom: 90px;
+		article {
+			.column(3);
+			margin-left: 1px;
+			
+			img {
+				margin-top: 30px;
+				width: 272px;
+				height: 201px;
+				margin-bottom: 15px;
+				padding-right: 10px;
+			}
+		
+			
+		}
+	}
+
+
+
+footer{
+	background: @ogColor;
+	p{
+		font-size: 14px;
+		color: @white;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		text-align: center;
+	}
+}
+
+
+
+
+//////////media query tablet/////////////
+
+@media only screen and (max-width: 950px) and (min-width: 320px) {
+///////index page/////////////////
+	.nav li{
+		margin-right: 0px;
+	}
+
+	nav{
+		h1{
+			padding-left: 20px;
+		}
+
+		ul{
+			padding-top: 2px;
+		}
+	}
+
+	section#slider{
+		.leftA{
+			margin-left: 40px;
+		}
+
+		.rightA{
+			margin-right: 40px;
+		}
+	}
+
+	section#lorem{
+		p{
+			font-size: 18px;
+		}
+
+		.big{
+			font-size: 20px;
+		}
+	}
+
+	section#body{
+		p{
+			padding-left: 40px;
+			padding-right: 40px;
+		}
+	}
+
+	section#features{
+		article{
+			.column(5);
+			margin-left: 55px;
+		}
+	}
+	section#projects{
+		article{
+			margin-left: 90px;
+		}
+	}
+//////about us page////////////
+
+section#aboutCover, section#us{
+	p{
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+}
+
+section#team{
+	article{
+		.column(5);
+		margin-left: 50px;
+	}
+}
+
+section#mission{
+	article{
+		.column(11);
+		margin-left: 30px;
+		margin-bottom: 30px;
+	}
+
+	aside{
+		.column(11);
+		margin-left: 30px;
+		margin-bottom: 30px;
+
+		img{
+			left: -300px;
+		}
+	}
+}
+/////////portfolio page/////////////
+
+section#portfolio{
+	p{
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+
+	.portNav{
+		margin-left: 30px;
+	}
+}
+
+section#gallery{
+	article{
+		.column(5);
+		margin-left: 65px;
+	}
+}
+
+
+}
+
+/////////small tablet/////
+@media (max-width: 768px) and (min-width: 320px){
+
+.nav li{
+		margin-right: -20px;
+		font-size: 13px;
+	}
+
+	nav{
+		ul{
+			padding-top: 2px;
+		}
+	}
+
+section#projects{
+	p{
+		.column(8);
+		margin-left: 100px;
+		margin-bottom: 40px;
+	}
+}
+section#features{
+	article{
+		.column(10);
+		margin-left: 75px;
+	}
+}
+section#projects{
+	article{
+		margin-left: 170px;
+	}
+}
+////////portfolio page////////
+section#gallery{
+	article{
+		margin-left: 30px;
+	}
+}
+}
+
+///////phone/////////
+@media (max-width: 480px) {
+.nav li{
+	font-size: 10px;
+	margin-left: 9px;
+	margin-bottom: 10px;
+}
+nav{
+	h1{
+		.column(12);
+		margin-top: 20px;
+		margin-left: 90px;
+		margin-bottom: 20px;
+	}
+
+	ul{
+		.column(12);
+		
+	}
+}
+
+section#slider{
+	h2{
+		margin-top: 80px;
+		font-size: 15px;
+
+		&:nth-child(2) {
+			
+			font-size: 9px;
+			
+		}
+	}
+
+
+.leftA, .rightA{
+	margin-top: -100px;
+}
+
+}
+
+section#features{
+	margin-left: -50px;
+		article{
+			p{
+				padding-right: 30px;
+			}
+		}
+	}
+
+section#projects{
+	p{
+		margin-left: 58px;
+	}
+
+	article{
+		margin-left: 36px;
+	}
+}
+/////////about us page/////////
+
+section#team{
+	article{
+		margin-left: 100px;
+
+		h4{
+			margin-left: 24px;
+		}
+
+		h5{
+			margin-left: 27px;
+		}
+	}
+}
+
+section#mission{
+	aside{
+		margin-left: 22px;
+		img{
+			left: -486px;
+		}
+	}
+}
+
+///////portfolio page//////
+section#portCover{
+	p{
+		margin-left: 20px;
+	}
+}
+
+section#portfolio{
+	.portNav{
+		li{
+			padding: 0 0 0 0;
+			margin-right: 5px;	
+		}
+	}
+}
+
+section#gallery{
+	article{
+		.column(12);
+		margin-left: 30px;
+	}
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
